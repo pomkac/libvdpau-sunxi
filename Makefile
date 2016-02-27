@@ -8,7 +8,7 @@ CEDARV_SRC = ve.c veisp.c
 NV_TARGET = libvdpau_nv_sunxi.so
 NV_SRC = opengl_nv.c
 
-CFLAGS ?= -Wall -O0 -g 
+CFLAGS ?= -Wall -O0 -g
 LDFLAGS =
 LIBS = -lrt -lm -lpthread
 LIBS_EGL = -lEGL
@@ -17,6 +17,7 @@ LIBS_VDPAU_SUNXI = -L /usr/lib/vdpau -lvdpau_sunxi
 LIBS_CEDARV = -L $(PWD) -lcedar_access
 CC = gcc
 
+CFLAGS += -Iinclude
 
 USE_UMP = 1
 
