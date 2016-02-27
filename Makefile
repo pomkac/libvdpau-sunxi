@@ -1,11 +1,11 @@
-TARGET = libvdpau_sunxi.so.1
+TARGET = libvdpau_sunxi.so
 SRC = device.c presentation_queue.c surface_output.c surface_video.c \
 	surface_bitmap.c video_mixer.c decoder.c handles.c \
 	h264.c mpeg12.c mpeg4.c mp4_vld.c mp4_tables.c mp4_block.c msmpeg4.c
 CEDARV_TARGET = libcedar_access.so
 CEDARV_SRC = ve.c veisp.c
 
-NV_TARGET = libvdpau_nv_sunxi.so.1
+NV_TARGET = libvdpau_nv_sunxi.so
 NV_SRC = opengl_nv.c
 
 CFLAGS ?= -Wall -O0 -g 
@@ -77,7 +77,10 @@ install: $(TARGET) $(TARGET_NV)
 	install -D $(TARGET) $(DESTDIR)$(MODULEDIR)/$(TARGET)
 	install -D $(NV_TARGET) $(DESTDIR)$(MODULEDIR)/$(NV_TARGET)
 	install -D $(CEDARV_TARGET) $(DESTDIR)$(USRLIB)/$(CEDARV_TARGET)
+	ln -sf $(DESTDIR)$(USRLIB)/$(TARGET) $(DESTDIR)$(USRLIB)/$(TARGET).1
+	ln -sf $(DESTDIR)$(USRLIB)/$(NV_TARGET) $(DESTDIR)$(USRLIB)/$(NV_TARGET).1
 	ln -sf $(DESTDIR)$(USRLIB)/$(CEDARV_TARGET) $(DESTDIR)$(USRLIB)/$(CEDARV_TARGET).1
+	
 
 uninstall:
 	rm -f $(DESTDIR)$(MODULEDIR)/$(TARGET)
