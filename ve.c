@@ -27,7 +27,7 @@
 #include <sys/mman.h>
 #include "ve.h"
 
-#include <valgrind/ammt_reqs.h>
+
 
 #define DEVICE "/dev/cedar_dev"
 #define PAGE_OFFSET (0xc0000000) // from kernel
@@ -139,7 +139,6 @@ int cedarv_open(void)
 
              VALGRIND_PRINTF("regs base addreess=%p\n", ve.regs);
 
-             AMMT_SET_REGS_BASE(ve.regs);
 
 	     ioctl(ve.fd, IOCTL_ENGINE_REQ, 0);
              ioctl(ve.fd, IOCTL_ENABLE_VE, 0);
